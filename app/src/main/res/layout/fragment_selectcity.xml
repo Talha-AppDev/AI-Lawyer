@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="480dp"
+    app:cardCornerRadius="30dp"
+    app:cardBackgroundColor="#DCDADA"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:padding="8dp"
+        android:shadowColor="#DCD9D9"
+        android:text="Select the city\nyou are looking\nservices for!"
+        android:textColor="#FFFFFF"
+        android:textFontWeight="900"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rec"
+        android:padding="4dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_arrow_drop_down_24"
+        android:layout_gravity="end"
+        android:autofillHints="Select "
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="20dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Continue"
+
+        android:backgroundTint="@color/green"
+        android:shadowColor="#9C9A9A"
+        android:layout_gravity="center_horizontal|center"
+        />
+</androidx.cardview.widget.CardView>

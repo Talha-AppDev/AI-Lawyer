@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".loginActivity">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/poppins"
+        android:layout_marginTop="120dp"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:marginBottom="8dp"/>
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="66dp"
+        android:fontFamily="@font/sora"
+        android:gravity="center"
+        android:textFontWeight="500"
+        android:text="Welcome\nEnter your details to get started"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/rec"
+        android:padding="12dp"
+        android:fontFamily="@font/sora"
+        android:textColor="@color/black"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="14dp"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:background="@drawable/rec"
+        android:padding="12dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="@font/sora"
+        android:textColor="@color/black"
+        android:layout_marginBottom="14dp"
+        android:inputType="textPassword"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:textColor="@color/white"
+        android:layout_marginEnd="10dp"
+        android:text="Forget Password?"
+        android:gravity="end"
+        />
+    <!-- Sign Up Button -->
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/sora"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/green"
+        android:textColor="@color/white"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Already Have Account -->
+    <TextView
+        android:id="@+id/tvAlreadyAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Create new account"
+        android:textDecorationLine="underline"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/sora"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Continue With -->
+    <TextView
+        android:id="@+id/tvContinueWith"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Continue with"
+        android:fontFamily="@font/sora"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginTop="38dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Social Media Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/btnGoogle"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/cir"
+            android:scaleType="fitCenter"
+            android:padding="4dp"
+            android:src="@drawable/googlelogo" />
+
+        <ImageButton
+            android:id="@+id/btnFacebook"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:padding="4dp"
+            android:background="@drawable/cir"
+            android:scaleType="fitCenter"
+            android:src="@drawable/fblogo" />
+
+    </LinearLayout>
+
+</LinearLayout>

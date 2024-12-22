@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/type"
+    tools:context=".TypeActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Who are you?"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:fontFamily="@font/poppins"
+        android:textStyle="bold"
+        android:layout_marginTop="150dp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        />
+
+    <ImageView
+
+        android:id="@+id/lawyer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="-44dp"
+        android:src="@drawable/lawyer"/>
+    <ImageView
+        android:id="@+id/client"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-44dp"
+        android:src="@drawable/client"/>
+</LinearLayout>
