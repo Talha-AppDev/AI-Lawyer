@@ -1,5 +1,6 @@
 package com.example.ailawyer
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -41,7 +42,12 @@ class MainActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 when (position) {
-                    2 -> binding.pg.setText("Continue")
+                    2 -> {
+                        binding.pg.setText("Continue")
+                        binding.pg.setOnClickListener {
+                            startActivity(Intent(this@MainActivity, loginActivity::class.java))
+                        }
+                    }
                     else -> binding.pg.setText("Swipe Left")
                 }
             }
