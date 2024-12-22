@@ -20,6 +20,12 @@ class loginActivity : AppCompatActivity() {
             startActivity(Intent(this@loginActivity, RegisterActivity::class.java))
         }
 
+        val Email = binding.etEmail.text.toString()
+        val Password = binding.etPassword.text.toString()
+
+        binding.btnLogin.setOnClickListener {
+            startActivity(Intent(this@loginActivity, TypeActivity::class.java))
+        }
 
     }
 }

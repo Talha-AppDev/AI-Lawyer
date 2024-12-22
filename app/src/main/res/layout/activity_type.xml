@@ -29,14 +29,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="-44dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/lawyer"/>
+
     <ImageView
         android:id="@+id/client"
-        android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-44dp"
-        android:src="@drawable/client"/>
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:src="@drawable/client" />
 </LinearLayout>

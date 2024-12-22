@@ -34,6 +34,7 @@
         android:padding="14dp"
         android:background="@color/green"
         android:text="Swipe Left"
+        android:textColor="@color/white"
         android:lineSpacingExtra="2dp"
         android:textSize="18sp"
         android:textFontWeight="500"
