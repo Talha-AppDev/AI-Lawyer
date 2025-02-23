@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- Cancel Icon in the Top Right Corner -->
+    <ImageView
+        android:id="@+id/ivCancel"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:contentDescription="Cancel"
+        android:src="@drawable/cross"
+        />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Enter Amount"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:paddingBottom="8dp"/>
+
+    <!-- EditText for entering the amount -->
+    <EditText
+        android:id="@+id/etAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDialogTitle"
+        android:layout_marginTop="16dp"
+        android:hint="Enter amount"
+        android:inputType="numberDecimal"
+        android:padding="8dp"
+        />
+
+    <!-- Confirm Button at the Bottom Center -->
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etAmount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="Confirm"
+        android:textColor="@color/black"
+        android:backgroundTint="#2ECC71"/>
+</RelativeLayout>

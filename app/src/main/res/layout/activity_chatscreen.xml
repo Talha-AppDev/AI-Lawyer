@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/chatbg"
+
     android:backgroundTint="#ECE9E9"
     tools:context=".ChatscreenActivity">
 
@@ -85,7 +85,6 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="4dp"
-                android:background="@drawable/invoice"
                 />
             <TextView
                 android:id="@+id/btnContract"
@@ -127,7 +126,6 @@
             android:layout_marginEnd="8dp"
             android:backgroundTint="@color/white"
             android:background="@drawable/ellicipse"
-            android:src="@drawable/Camera"
             android:contentDescription="Camera" />
 
         <ImageButton
@@ -136,7 +134,6 @@
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/ellicipse"
-            android:src="@drawable/Link"
             android:backgroundTint="@color/white"
             android:contentDescription="Attach" />
 
@@ -168,7 +165,7 @@
                 android:padding="12dp"
                 android:backgroundTint="@color/green"
                 android:layout_centerVertical="true"
-                android:src="@drawable/arrow"
+
                 android:contentDescription="Send Icon" />
         </RelativeLayout>
 

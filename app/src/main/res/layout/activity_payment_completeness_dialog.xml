@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Payment_completeness_Dialog"
+    android:backgroundTint="#ffff"
+    android:background="@drawable/corner_card"
+
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView7"
+        android:layout_width="252dp"
+        android:layout_height="374dp"
+        android:backgroundTint="#ffff"
+        android:elevation="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="258dp"
+            android:layout_height="185dp"
+            android:scaleType="fitXY"
+
+            app:srcCompat="@drawable/ic_dialog2" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="150dp"
+            android:text="Payment Added Successfully"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2"
+            android:layout_width="163dp"
+            android:layout_height="46dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="45dp"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/btn"
+            android:text="Ok, Thanks"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
