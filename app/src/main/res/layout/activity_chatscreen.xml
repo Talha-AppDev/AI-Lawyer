@@ -124,6 +124,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
+            android:src="@drawable/Vector"
             android:backgroundTint="@color/white"
             android:background="@drawable/ellicipse"
             android:contentDescription="Camera" />
@@ -133,6 +134,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
+            android:src="@drawable/attch"
             android:background="@drawable/ellicipse"
             android:backgroundTint="@color/white"
             android:contentDescription="Attach" />
@@ -163,9 +165,9 @@
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/ellicipse"
                 android:padding="12dp"
+                android:src="@drawable/ic_send"
                 android:backgroundTint="@color/green"
                 android:layout_centerVertical="true"
-
                 android:contentDescription="Send Icon" />
         </RelativeLayout>
 
