@@ -24,7 +24,7 @@
             android:name=".ADD_COMPLAINTS"
             android:exported="false" />
         <activity
-            android:name=".Edit_Profile"
+            android:name=".EditprofileActivity"
             android:exported="false" />
         <activity
             android:name=".Add_money"
@@ -45,9 +45,6 @@
             android:name=".ChatscreenActivity"
             android:exported="false" />
         <activity
-            android:name=".EditprofileActivity"
-            android:exported="false" />
-        <activity
             android:name=".IntroActivity"
             android:exported="false"
             android:theme="@style/Theme.AiLawyer" />
@@ -58,17 +55,16 @@
             android:name=".TypeActivity"
             android:exported="false" />
         <activity
-            android:name=".loginActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".loginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
