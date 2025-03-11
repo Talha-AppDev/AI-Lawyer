@@ -20,7 +20,10 @@ class ChatAdapter(private val messages: List<Message>) : RecyclerView.Adapter<Re
     class ReceivedMessageViewHolder(val binding: ItemMessageReceivedBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun getItemViewType(position: Int): Int {
-        return if (messages[position].isUser) VIEW_TYPE_SENT else VIEW_TYPE_RECEIVED
+        return if (messages[position].isUser)
+            VIEW_TYPE_SENT
+        else
+            VIEW_TYPE_RECEIVED
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
