@@ -12,14 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AiLawyer"
         tools:targetApi="31">
-        <activity
-            android:name=".chat"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".chat"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".add_report"
             android:exported="false"/>
-
-
         <activity
             android:name=".ADD_COMPLAINTS"
             android:exported="false" />
@@ -61,7 +59,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".loginActivity"
+            android:name=".chat"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
