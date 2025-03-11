@@ -16,7 +16,7 @@
 <!--            android:name=".chat"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".add_report"
+            android:name=".chat"
             android:exported="false"/>
         <activity
             android:name=".ADD_COMPLAINTS"
@@ -59,7 +59,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".chat"
+            android:name=".add_report"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
