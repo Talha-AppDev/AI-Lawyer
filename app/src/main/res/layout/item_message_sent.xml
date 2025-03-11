@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/green"
-        android:elevation="4dp"
         android:padding="8dp"
         app:cardCornerRadius="8dp"
         xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -19,10 +18,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/messageText"
+                android:maxWidth="300dp"
+                android:paddingTop="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
@@ -30,6 +34,7 @@
 
             <TextView
                 android:id="@+id/messageTime"
+                android:padding="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
