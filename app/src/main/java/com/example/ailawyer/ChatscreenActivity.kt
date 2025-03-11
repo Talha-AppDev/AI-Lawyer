@@ -17,7 +17,6 @@ class ChatscreenActivity : AppCompatActivity() {
         binding = ActivityChatscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.
 
     }
 }
