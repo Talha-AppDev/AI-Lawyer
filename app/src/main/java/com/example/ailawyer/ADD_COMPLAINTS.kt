@@ -6,8 +6,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ailawyer.databinding.ActivityAddComplaintsBinding
+import com.example.ailawyer.databinding.ActivityAddReportBinding
 
 class ADD_COMPLAINTS : AppCompatActivity() {
+    private lateinit var binding :ActivityAddComplaintsBinding
+    // val complaint =Complaint(" ","","","")
 
     private lateinit var uploadButton: TextView
     private lateinit var selectedFileName: TextView
@@ -18,14 +22,30 @@ class ADD_COMPLAINTS : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_complaints) // Replace with your layout file name
+        binding = ActivityAddComplaintsBinding.inflate(layoutInflater)
+        setContentView(binding.root) // Replace with your layout file name
 
-        uploadButton = findViewById(R.id.add_file)
+        uploadButton = binding.addFile
 
 
         uploadButton.setOnClickListener {
             openFilePicker()
         }
+        binding.submitButton.setOnClickListener {
+            val complaint = Complaint(
+                title = binding.complaintTitle.text.toString(),
+                details = binding.complaintDescription.text.toString(),
+                state = binding.regularStatus.text.toString(),
+                progress = "Pending" // or another default value
+            )
+
+// Create an Intent to pass the complaint data to the add_report activity
+            val intent = Intent(this, add_report::class.java)
+            intent.putExtra("complaintData", complaint) // Passing the complaint as a Parcelable extra
+            startActivity(intent)
+        }
+
+
     }
 
     private fun openFilePicker() {
