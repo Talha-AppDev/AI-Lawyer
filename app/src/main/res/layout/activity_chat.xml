@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/avatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ic_chat"
 
             android:layout_marginEnd="16dp" />
@@ -36,8 +36,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="AI LAWYER"
+                android:layout_marginTop="10dp"
+                android:text="@string/ai_lawyer"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -45,7 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Here to help you with your case"
+                android:layout_marginBottom="4dp"
+                android:text="@string/here_to_help_you_with_your_case"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -76,7 +77,7 @@
         android:id="@+id/attachButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/attch"
+        android:src="@drawable/baseline_link_24"
         android:layout_marginEnd="8dp"/>
 
         <EditText
