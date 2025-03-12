@@ -6,24 +6,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ailawyer.databinding.ItemMessageSentBinding
 import com.example.ailawyer.databinding.ItemMessageReceivedBinding
 
+
 class ChatAdapter(private val messages: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    // Define constants for view types
     companion object {
         private const val VIEW_TYPE_SENT = 1
         private const val VIEW_TYPE_RECEIVED = 2
     }
 
-    // ViewHolder for sent messages using binding
+    // ViewHolder for sent messages
     class SentMessageViewHolder(val binding: ItemMessageSentBinding) : RecyclerView.ViewHolder(binding.root)
 
-    // ViewHolder for received messages using binding
+    // ViewHolder for received messages
     class ReceivedMessageViewHolder(val binding: ItemMessageReceivedBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun getItemViewType(position: Int): Int {
-        return if (messages[position].isUser)
-            VIEW_TYPE_SENT
-        else
-            VIEW_TYPE_RECEIVED
+        return if (messages[position].isUser) VIEW_TYPE_SENT else VIEW_TYPE_RECEIVED
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -36,8 +35,12 @@ class ChatAdapter(private val messages: List<Message>) : RecyclerView.Adapter<Re
         }
     }
 
+    override fun getItemCount(): Int {
+        return messages.size  // Fix: return the correct count
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val message = messages[position]
+        val message = messages[position]  // Fix: get message at correct position
         when (holder) {
             is SentMessageViewHolder -> {
                 holder.binding.messageText.text = message.text
@@ -49,6 +52,4 @@ class ChatAdapter(private val messages: List<Message>) : RecyclerView.Adapter<Re
             }
         }
     }
-
-    override fun getItemCount(): Int = messages.size
 }
