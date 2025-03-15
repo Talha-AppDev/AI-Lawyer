@@ -12,19 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AiLawyer"
         tools:targetApi="31">
-        <activity
-            android:name=".chat"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".chat"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".add_report"
             android:exported="false"/>
-
-
         <activity
             android:name=".ADD_COMPLAINTS"
             android:exported="false" />
         <activity
-            android:name=".Edit_Profile"
+            android:name=".EditprofileActivity"
             android:exported="false" />
         <activity
             android:name=".Add_money"
@@ -45,9 +43,6 @@
             android:name=".ChatscreenActivity"
             android:exported="false" />
         <activity
-            android:name=".EditprofileActivity"
-            android:exported="false" />
-        <activity
             android:name=".IntroActivity"
             android:exported="false"
             android:theme="@style/Theme.AiLawyer" />
@@ -58,7 +53,7 @@
             android:name=".TypeActivity"
             android:exported="false" />
         <activity
-            android:name=".loginActivity"
+            android:name=".AiChatActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -68,7 +63,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

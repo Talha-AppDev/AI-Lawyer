@@ -83,6 +83,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:src="@drawable/invoice"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="4dp"
                 />
@@ -124,7 +125,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/Vector"
+            android:src="@drawable/camera"
             android:backgroundTint="@color/white"
             android:background="@drawable/ellicipse"
             android:contentDescription="Camera" />
@@ -170,7 +171,5 @@
                 android:layout_centerVertical="true"
                 android:contentDescription="Send Icon" />
         </RelativeLayout>
-
     </LinearLayout>
-
 </LinearLayout>

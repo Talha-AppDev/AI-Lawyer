@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".chat">
+    tools:context=".AiChatActivity"
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -28,13 +30,14 @@
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_weight="1"
+
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="AI LAWYER"
+                android:layout_marginTop="10dp"
+                android:text="@string/ai_lawyer"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -42,7 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Here to help you with your case"
+                android:layout_marginBottom="4dp"
+                android:text="@string/here_to_help_you_with_your_case"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -59,6 +63,14 @@
         android:layout_weight="1"
         android:padding="8dp" />
 
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,9 +80,9 @@
 
         <ImageView
         android:id="@+id/attachButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_attach_file"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/baseline_link_24"
         android:layout_marginEnd="8dp"/>
 
         <EditText
@@ -81,10 +93,14 @@
             android:hint="write a message"
             android:inputType="textMultiLine"
             android:maxLines="3"
-            android:background="@drawable/message_input_background"  android:padding="8dp"  android:textSize="16sp" />  <ImageView
+            android:background="@drawable/message_input_background"  android:padding="8dp"  android:textSize="16sp" />
+
+        <ImageView
             android:id="@+id/sendButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="4dp"
             android:src="@drawable/ic_send" />
     </LinearLayout>
 

@@ -2,11 +2,11 @@ package com.example.ailawyer.Network
 
 import com.example.ailawyer.QueryData.QueryRequest
 import com.example.ailawyer.QueryData.QueryResponse
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
-import retrofit2.Call
 
-interface ApiService {
+interface LawyerApiService {
     @POST("query")
-    fun getQueryResponse(@Body request: QueryRequest): Call<QueryResponse>
+    fun queryLawyer(@Body request: QueryRequest): Call<QueryResponse>
 }
