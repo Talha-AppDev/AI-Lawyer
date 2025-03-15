@@ -25,33 +25,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-
-            android:contentDescription="Close" />  <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/complaintTitle"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/complaintDetails"
-            android:layout_width="wrap_content"
+            android:contentDescription="Close" />
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:layout_below="@id/complaintTitle"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/complaintState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" />
+            <TextView
+                android:id="@+id/complaintDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
 
-        <TextView
-            android:id="@+id/complaintProgress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" />
+            <TextView
+                android:id="@+id/complaintState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/complaintProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
 
+        </LinearLayout>
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>

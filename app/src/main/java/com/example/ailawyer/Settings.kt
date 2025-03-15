@@ -12,9 +12,23 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        binding.imageView5.setOnClickListener {
+        binding.Wallet.setOnClickListener {
             startActivity(Intent(this, MyWallet::class.java))
         }
+
+        binding.EditProfile.setOnClickListener {
+            startActivity(Intent(this, EditprofileActivity::class.java))
+        }
+
+        binding.backButton.setOnClickListener {
+            startActivity(Intent(this, CityResultActivity::class.java))
+        }
+
+        binding.report.setOnClickListener {
+            startActivity(Intent(this, AddReportActivity::class.java))
+        }
+
+
         setContentView(binding.root)
     }
 }

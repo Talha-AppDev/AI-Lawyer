@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".ADD_COMPLAINTS">
@@ -27,8 +28,10 @@
     <EditText
         android:id="@+id/complaintTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingStart="10dp"
         android:hint="Complaint Title"
+        android:background="@drawable/message_input_background"
         android:inputType="text"
         android:layout_marginTop="16dp"
         />
@@ -48,6 +51,8 @@
         android:layout_height="150dp"
         android:gravity="top|start"
         android:hint="Description"
+        android:padding="10dp"
+        android:background="@drawable/message_input_background"
         android:inputType="textMultiLine"
         android:layout_marginTop="8dp" />
 
@@ -107,6 +112,8 @@
             android:id="@+id/uploadCard"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            app:cardCornerRadius="20dp"
+            android:elevation="4dp"
             android:layout_marginTop="8dp">
 
             <LinearLayout

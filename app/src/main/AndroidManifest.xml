@@ -12,12 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AiLawyer"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".chat"-->
-<!--            android:exported="false" />-->
         <activity
-            android:name=".add_report"
-            android:exported="false"/>
+            android:name=".LawyerScreenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CityResultActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AiLawyer" />
+        <activity
+            android:name=".loginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddReportActivity"
+            android:exported="false" />
         <activity
             android:name=".ADD_COMPLAINTS"
             android:exported="false" />
@@ -38,7 +45,15 @@
             android:exported="false" />
         <activity
             android:name=".Settings"
-            android:exported="false" />
+            android:exported="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".ChatscreenActivity"
             android:exported="false" />
@@ -61,10 +76,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ailawyer.databinding.ActivityCityBinding
 import com.google.android.material.tabs.TabLayout
 import androidx.fragment.app.FragmentTransaction
-import com.example.ailawyer.typeFrag.CityresultFragment
 import com.example.ailawyer.typeFrag.SelectcityFragment
 
 class CityActivity : AppCompatActivity() {
@@ -18,6 +17,8 @@ class CityActivity : AppCompatActivity() {
         binding = ActivityCityBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+
 
         // Set the first fragment by default when the activity is launched
         if (savedInstanceState == null) {
@@ -31,7 +32,6 @@ class CityActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     0 -> loadFragment(SelectcityFragment())
-                    1 -> loadFragment(CityresultFragment())
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab?) {}

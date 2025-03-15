@@ -1,5 +1,6 @@
 package com.example.ailawyer.typeFrag
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.ailawyer.CityActivity
+import com.example.ailawyer.CityResultActivity
 import com.example.ailawyer.databinding.FragmentSelectcityBinding
 
 class SelectcityFragment : Fragment() {
@@ -23,6 +26,11 @@ class SelectcityFragment : Fragment() {
         val cities = listOf(
             "Karachi", "Lahore", "Islamabad", "Rawalpindi"
         )
+
+        binding.continueBTN.setOnClickListener {
+            val intent = Intent(requireContext(), CityResultActivity::class.java)
+            startActivity(intent)
+        }
 
         val adapter = ArrayAdapter(
             requireContext(),

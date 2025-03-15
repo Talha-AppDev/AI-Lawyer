@@ -1,0 +1,27 @@
+<!-- res/menu/drawer_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/set"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/chat"
+        android:title="Profile" />
+
+    <item
+        android:id="@+id/nav_location"
+        android:icon="@drawable/loc"
+        android:title="location"
+        />
+
+    <item
+        android:id="@+id/nav_cross"
+        android:icon="@drawable/cut"
+        android:title="end"
+        />
+
+
+</menu>

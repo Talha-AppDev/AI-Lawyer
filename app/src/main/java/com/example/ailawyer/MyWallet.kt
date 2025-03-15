@@ -13,7 +13,6 @@ class MyWallet : AppCompatActivity() {
         val btn = findViewById<Button>(R.id.button)
         btn.setOnClickListener {
             startActivity(Intent(this,Add_money::class.java))
-
         }
     }
 }

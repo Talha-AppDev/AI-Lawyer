@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.ailawyer.R
 
-class CityResult: Fragment(R.layout.fragment_cityresult)
 class SelectedCity: Fragment(R.layout.fragment_selectcity)
 
 class TypeFragAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
@@ -14,7 +13,6 @@ class TypeFragAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(
         return when(position)
         {
             0 -> SelectedCity()
-            1 -> CityResult()
             else -> throw IllegalStateException("Unexpected position $position")
         }
     }

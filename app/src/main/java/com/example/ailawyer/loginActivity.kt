@@ -38,7 +38,7 @@ class loginActivity : AppCompatActivity() {
             loginUser(this, email, password) { success, user, errorMessage ->
                 if (success) {
                     Toast.makeText(this, "Welcome, ${user?.email}", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this@loginActivity, TypeActivity::class.java))
+                    startActivity(Intent(this@loginActivity, CityActivity::class.java))
                 } else {
                     Toast.makeText(this, "Error: $errorMessage", Toast.LENGTH_LONG).show()
                 }

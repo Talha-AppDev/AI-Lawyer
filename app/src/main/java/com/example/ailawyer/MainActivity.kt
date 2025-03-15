@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     2 -> {
                         binding.pg.setText("Continue")
                         binding.pg.setOnClickListener {
-                            startActivity(Intent(this@MainActivity, loginActivity::class.java))
+                            startActivity(Intent(this@MainActivity, TypeActivity::class.java))
                         }
                     }
                     else -> binding.pg.setText("Swipe Left")

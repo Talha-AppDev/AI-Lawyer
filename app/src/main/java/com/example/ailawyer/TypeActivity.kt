@@ -14,9 +14,14 @@ class TypeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityTypeBinding.inflate(layoutInflater)
+        setContentView(binding.root) // Move this before setting click listeners
+
         binding.lawyer.setOnClickListener {
-            startActivity(Intent(this@TypeActivity, CityActivity::class.java))
+            startActivity(Intent(this@TypeActivity, loginActivity::class.java))
         }
-        setContentView(binding.root)
+        binding.client.setOnClickListener {
+            startActivity(Intent(this@TypeActivity, loginActivity::class.java))
+        }
     }
+
 }

@@ -69,8 +69,14 @@ class RegisterActivity : AppCompatActivity() {
                     signUpUser(
                         user_name.text.toString(),
                         user_email.text.toString(),
-                        user_pass.text.toString()
-                    )
+                        user_pass.text.toString()) { success ->
+                        if (success) {
+                            startActivity(Intent(this, CityActivity::class.java))
+                        } else {
+                            // Handle sign-up failure (e.g., log error or retry)
+                        }
+                    }
+
                 }
                 else
                     showNoInternetDialog()
@@ -102,8 +108,12 @@ class RegisterActivity : AppCompatActivity() {
     private fun setSignUpButtonEnabled(enabled: Boolean) {
         binding.btnSignUp.isEnabled = enabled
     }
-    
-    private fun signUpUser(userName: String, userEmail: String, userPass: String) {
+    private fun signUpUser(
+        userName: String,
+        userEmail: String,
+        userPass: String,
+        onSignUpResult: (Boolean) -> Unit
+    ) {
         // Show the progress bar and disable the sign-up button
         binding.progressBar.visibility = View.VISIBLE
         setSignUpButtonEnabled(false)
@@ -137,6 +147,8 @@ class RegisterActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
+                            // Call back with true because sign-up was successful
+                            onSignUpResult(true)
                         }
                 } else {
                     // Hide the progress bar, re-enable the sign-up button, and show an error message.
@@ -147,6 +159,8 @@ class RegisterActivity : AppCompatActivity() {
                         "Sign up failed: ${task.exception?.message}",
                         Toast.LENGTH_SHORT
                     ).show()
+                    // Call back with false because sign-up failed
+                    onSignUpResult(false)
                 }
             }
     }
