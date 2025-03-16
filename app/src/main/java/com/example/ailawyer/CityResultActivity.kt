@@ -25,34 +25,29 @@ class CityResultActivity : AppCompatActivity() {
         binding = ActivityCityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 1. Set up RecyclerView
+        // 1. Set up RecyclerView with LinearLayoutManager and adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         val lawyerList = List(10) { index -> "Lawyer #${index + 1}" }
         binding.recyclerView.adapter = LawyerAdapter(lawyerList)
 
-        // 2. Optional: onClick for the entire RecyclerView (usually you'd set item-level clicks)
-        binding.recyclerView.setOnClickListener {
-            startActivity(Intent(this@CityResultActivity, IntroActivity::class.java))
-        }
-
-        // 3. DrawerLayout and NavigationView references
+        // 2. Set up DrawerLayout and NavigationView
         drawerLayout = binding.drawerLayout
         navigationView = binding.navigationView
 
-        // 4. 'Home' icon opens the drawer
+        // 3. 'Home' icon opens the drawer
         val homeIcon: ImageView = binding.home
         homeIcon.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        // 5. Handle navigation drawer item clicks
+        // 4. Handle navigation drawer item clicks
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_setting -> {
                     startActivity(Intent(this, Settings::class.java))
                 }
                 R.id.nav_chat -> {
-                    // Handle chat click
+                    startActivity(Intent(this, LawyerScreenActivity::class.java))
                 }
                 R.id.nav_cross -> {
                     // Handle cross click
@@ -61,7 +56,7 @@ class CityResultActivity : AppCompatActivity() {
                     startActivity(Intent(this, CityActivity::class.java))
                 }
             }
-            // Close drawer after selection
+            // Close the drawer after selection
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
@@ -76,7 +71,7 @@ class CityResultActivity : AppCompatActivity() {
         }
     }
 
-    // Inner adapter class using binding for each item
+    // Inner adapter class using ViewBinding for each item
     inner class LawyerAdapter(private val lawyers: List<String>) :
         RecyclerView.Adapter<LawyerAdapter.LawyerViewHolder>() {
 
@@ -95,6 +90,12 @@ class CityResultActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: LawyerViewHolder, position: Int) {
             // Bind the lawyer name to the userName TextView
             holder.binding.userName.text = lawyers[position]
+
+            // Set an onClickListener on the entire item view to navigate to IntroActivity
+            holder.itemView.setOnClickListener {
+                val intent = Intent(this@CityResultActivity, IntroActivity::class.java)
+                this@CityResultActivity.startActivity(intent)
+            }
         }
 
         override fun getItemCount(): Int = lawyers.size

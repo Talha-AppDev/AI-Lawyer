@@ -7,16 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ailawyer.databinding.ActivityLawyerScreenBinding
 
-class LawyerScreenActivity: AppCompatActivity() {
+class LawyerScreenActivity : AppCompatActivity() {
 
-    // 1. Data Model (optional)
+    // Data Model
     data class Lawyer(
         val name: String,
         val reviews: String,
@@ -31,14 +29,16 @@ class LawyerScreenActivity: AppCompatActivity() {
         binding = ActivityLawyerScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Button to open AiChatActivity (if needed)
         binding.btnAiAssistant.setOnClickListener {
             startActivity(Intent(this, AiChatActivity::class.java))
         }
 
-        // 3. Find the RecyclerView
+        // Set up RecyclerView with a LayoutManager
         val recyclerView: RecyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // 4. Create a list of 4 lawyers (or any data you have)
+        // Create a list of lawyers
         val lawyerList = listOf(
             Lawyer("Asma #1", "4.8 out of 30 reviews", R.drawable.ic),
             Lawyer("Asma #2", "4.5 out of 22 reviews", R.drawable.ic),
@@ -46,11 +46,11 @@ class LawyerScreenActivity: AppCompatActivity() {
             Lawyer("Asma #4", "4.6 out of 18 reviews", R.drawable.ic)
         )
 
-        // 5. Set the adapter
+        // Set the adapter
         recyclerView.adapter = LawyerAdapter(lawyerList)
     }
 
-    // 6. RecyclerView Adapter inflating lawyer_attribute.xml
+    // RecyclerView Adapter inflating lawyer_attribute.xml
     inner class LawyerAdapter(private val lawyers: List<Lawyer>) :
         RecyclerView.Adapter<LawyerAdapter.LawyerViewHolder>() {
 
@@ -72,6 +72,12 @@ class LawyerScreenActivity: AppCompatActivity() {
             holder.userName.text = lawyer.name
             holder.reviews.text = lawyer.reviews
             holder.profileImage.setImageResource(lawyer.imageRes)
+
+            // Set click listener on each item to navigate to AiChatActivity
+            holder.itemView.setOnClickListener {
+                val intent = Intent(this@LawyerScreenActivity, ChatscreenActivity::class.java)
+                this@LawyerScreenActivity.startActivity(intent)
+            }
         }
 
         override fun getItemCount(): Int = lawyers.size

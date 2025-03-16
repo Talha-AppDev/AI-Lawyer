@@ -25,15 +25,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- MapView -->
-        <com.google.android.gms.maps.MapView
+
+        <ImageView
             android:id="@+id/mapView"
-            android:layout_width="0dp"
-            android:layout_height="197dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/dummy_map"
             app:layout_constraintBottom_toTopOf="@+id/frameLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <!-- MapView -->
+<!--        <com.google.android.gms.maps.MapView-->
+<!--            android:id="@+id/mapView"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="197dp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/frameLayout"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
 
         <!-- FrameLayout holding the RecyclerView + Home icon -->
         <FrameLayout
@@ -67,6 +78,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:itemIconTint="@null"
+        app:itemIconSize="24dp"
         app:menu="@menu/drawer_menu"
         android:background="@android:color/white" />
 

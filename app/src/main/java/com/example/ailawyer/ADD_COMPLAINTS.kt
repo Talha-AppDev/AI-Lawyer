@@ -32,7 +32,7 @@ class ADD_COMPLAINTS : AppCompatActivity() {
             openFilePicker()
         }
         binding.submitButton.setOnClickListener {
-            val complaint = AddReportActivity.Complaint(
+            val complaint = Complaint(
                 title = binding.complaintTitle.text.toString(),
                 details = binding.complaintDescription.text.toString(),
                 state = binding.regularStatus.text.toString(),
@@ -40,7 +40,7 @@ class ADD_COMPLAINTS : AppCompatActivity() {
             )
 
 // Create an Intent to pass the complaint data to the add_report activity
-            val intent = Intent(this, AddReportActivity::class.java)
+            val intent = Intent(this, add_report::class.java)
             intent.putExtra("complaintData", complaint) // Passing the complaint as a Parcelable extra
             startActivity(intent)
         }
@@ -53,6 +53,12 @@ class ADD_COMPLAINTS : AppCompatActivity() {
             type = "*/*" // Or specify specific MIME types if needed (e.g., "application/pdf")
             addCategory(Intent.CATEGORY_OPENABLE)
         }
+
         startActivityForResult(intent, PICK_FILE_REQUEST)
     }
+
+
+
+
+
 }

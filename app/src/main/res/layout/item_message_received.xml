@@ -28,18 +28,33 @@
                 android:paddingTop="4dp"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
+                android:layout_margin="4dp"
+                android:text="iusahfkjash foihasui fhksf fasihf sfjfoiashf  osfh ioiashf iosahf usfh sufiushaf iuhsiuf hsoif "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
+            <TextView
+                android:id="@+id/getmoreinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#39A017"
+                android:visibility="gone"
+                android:textSize="16sp"
+                android:padding="6dp"
+                android:gravity="end"
+                android:text="Get More Info!"
+                />
 
             <TextView
                 android:id="@+id/messageTime"
                 android:padding="2dp"
+                android:text="12:33pm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:textSize="12sp" />
+
 
         </LinearLayout>
 

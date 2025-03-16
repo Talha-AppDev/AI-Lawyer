@@ -1,107 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+
+android:backgroundTint="#ECE9E9"
+tools:context=".ChatscreenActivity">
+
+<!-- Header -->
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/headerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".AiChatActivity"
-    >
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:backgroundTint="#EAE9E9"
+    android:gravity="center_vertical"
+    android:background="@color/white">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/baseline_arrow_back_24"
+        android:contentDescription="Back" />
 
-        <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_chat"
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_chat"
+        android:background="@drawable/ellicipse"
+        android:contentDescription="Profile" />
 
-            android:layout_marginEnd="16dp" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/ai_lawyer"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/here_to_help_you_with_your_case"
+                android:text="AI Lawyer"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/verifiedIcon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/verified"
+                android:contentDescription="Verified" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Artifical Intelligent lawyer"
+            android:textSize="14sp" />
+    </LinearLayout>
 
-    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cir_rec">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/invoice"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="4dp"
+            />
+        <TextView
+            android:id="@+id/btnContract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contract"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>
 
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatRecyclerView"
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="8dp" />
+        android:clipToPadding="false"
+        >
+
+        <!-- Chat Messages (RecyclerView) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="6dp"
+            android:clipToPadding="false" />
+
+        <!-- ProgressBar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
 
-    <ProgressBar
-        android:id="@+id/progressBar"
+
+    <!-- Message Input Section -->
+<LinearLayout
+    android:id="@+id/inputLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="8dp"
+    android:backgroundTint="#EAE9E9"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+
+    <ImageButton
+        android:id="@+id/btnAttach"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/attch"
+        android:background="@drawable/ellicipse"
+        android:backgroundTint="@color/white"
+        android:contentDescription="Attach" />
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_weight="1"
+        android:background="@drawable/roundrectangle"
+        >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        android:gravity="center_vertical">
 
-        <ImageView
-        android:id="@+id/attachButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/baseline_link_24"
-        android:layout_marginEnd="8dp"/>
 
         <EditText
             android:id="@+id/messageEditText"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="write a message"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
-            android:background="@drawable/message_input_background"  android:padding="8dp"  android:textSize="16sp" />
+            android:hint="Write a message"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="48dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/sendButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="4dp"
-            android:src="@drawable/ic_send" />
-    </LinearLayout>
-
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="4dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ellicipse"
+            android:padding="12dp"
+            android:src="@drawable/ic_send"
+            android:backgroundTint="@color/green"
+            android:layout_centerVertical="true"
+            android:contentDescription="Send Icon" />
+    </RelativeLayout>
+</LinearLayout>
 </LinearLayout>

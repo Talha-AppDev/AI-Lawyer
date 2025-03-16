@@ -4,23 +4,23 @@
     <item
         android:id="@+id/nav_setting"
         android:icon="@drawable/set"
-        android:title="Home" />
+        android:title="Settings" />
 
     <item
         android:id="@+id/nav_chat"
         android:icon="@drawable/chat"
-        android:title="Profile" />
-
+        android:title="Chats" />
+Profile
     <item
         android:id="@+id/nav_location"
         android:icon="@drawable/loc"
-        android:title="location"
+        android:title="Location"
         />
 
     <item
         android:id="@+id/nav_cross"
         android:icon="@drawable/cut"
-        android:title="end"
+        android:title="End"
         />
 
 

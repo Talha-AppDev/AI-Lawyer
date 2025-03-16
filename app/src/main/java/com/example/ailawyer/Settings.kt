@@ -25,7 +25,7 @@ class Settings : AppCompatActivity() {
         }
 
         binding.report.setOnClickListener {
-            startActivity(Intent(this, AddReportActivity::class.java))
+            startActivity(Intent(this, add_report::class.java))
         }
 
 

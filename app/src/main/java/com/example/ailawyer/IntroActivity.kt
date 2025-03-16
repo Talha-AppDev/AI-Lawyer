@@ -2,10 +2,11 @@ package com.example.ailawyer
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.example.ailawyer.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {
@@ -13,20 +14,24 @@ class IntroActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.sendmessage.setOnClickListener {
-            startActivity(Intent(this@IntroActivity, Settings::class.java))
+        // Disable the default system window insets handling.
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        // Adjust the padding of the root view to account for system bars.
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(
+                top = systemBarsInsets.top,
+                bottom = systemBarsInsets.bottom
+            )
+            insets
         }
 
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding.sendmessage.setOnClickListener {
+            startActivity(Intent(this@IntroActivity, ChatscreenActivity::class.java))
         }
     }
 }

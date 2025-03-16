@@ -3,70 +3,90 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:icon="@mipmap/ic_launcher_foreground"
+        android:roundIcon="@mipmap/ic_launcher_foreground"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AiLawyer"
         tools:targetApi="31">
         <activity
             android:name=".LawyerScreenActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
         <activity
             android:name=".CityResultActivity"
             android:exported="false"
-            android:theme="@style/Theme.AiLawyer" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
         <activity
             android:name=".loginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".AddReportActivity"
+            android:name=".add_report"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ADD_COMPLAINTS"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".EditprofileActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Add_money"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Payment_completeness_Dialog"
-            android:exported="false" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false"
+            />
         <activity
             android:name=".Dialog_Money"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".MyWallet"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Settings"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ChatscreenActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".IntroActivity"
             android:exported="false"
-            android:theme="@style/Theme.AiLawyer" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".CityActivity"
             android:exported="false" />
         <activity
             android:name=".TypeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".AiChatActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
