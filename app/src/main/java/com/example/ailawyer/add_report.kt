@@ -7,6 +7,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ailawyer.databinding.ActivityAddReportBinding
+import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 
 import android.os.Parcel
@@ -48,36 +51,49 @@ data class Complaint(
 }
 
 
-class add_report : AppCompatActivity() {
 
+
+
+class add_report : AppCompatActivity() {
     private lateinit var binding: ActivityAddReportBinding
     private lateinit var complaintsContainer: LinearLayout
+    private lateinit var sharedPreferences: SharedPreferences
+    private val complaintsList = ArrayList<Complaint>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        complaintsContainer = binding.complaintsContainer // Initialize using View Binding
+        complaintsContainer = binding.complaintsContainer
+        sharedPreferences = getSharedPreferences("complaints_prefs", MODE_PRIVATE)
+
+        // Load stored complaints
+        loadComplaints()
+
         binding.addNewReportButton.setOnClickListener {
             startActivity(Intent(this, ADD_COMPLAINTS::class.java))
         }
 
-        // Check if the Intent has the complaintData
-        val complaint = intent.getParcelableExtra<Complaint>("complaintData")
+        // Check if a new complaint was added
+        val newComplaint = intent.getParcelableExtra<Complaint>("complaintData")
+        if (newComplaint != null) {
+            complaintsList.add(newComplaint) // Add new complaint to list
+            saveComplaints() // Save updated list
+            displayAllComplaints() // Refresh UI
+        }
+    }
 
-        if (complaint != null) {
-            // Display the received complaint
+    private fun displayAllComplaints() {
+        complaintsContainer.removeAllViews() // Clear previous views
+        for (complaint in complaintsList) {
             displayComplaint(complaint)
         }
     }
 
-    // This function creates and adds a new card for each complaint to the UI
     private fun displayComplaint(complaint: Complaint) {
-        // Inflate the complaint card layout
         val complaintCardView = LayoutInflater.from(this).inflate(R.layout.complaint_item, complaintsContainer, false)
 
-        // Bind the complaint data to the views in the card
         val titleTextView: TextView = complaintCardView.findViewById(R.id.complaintTitle)
         val detailsTextView: TextView = complaintCardView.findViewById(R.id.complaintDetails)
         val stateTextView: TextView = complaintCardView.findViewById(R.id.complaintState)
@@ -88,7 +104,28 @@ class add_report : AppCompatActivity() {
         stateTextView.text = complaint.state
         progressTextView.text = complaint.progress
 
-        // Add the complaint card to the container
         complaintsContainer.addView(complaintCardView)
     }
+
+    private fun saveComplaints() {
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(complaintsList) // Convert list to JSON string
+        editor.putString("complaints_list", json)
+        editor.apply()
+    }
+
+    private fun loadComplaints() {
+        val gson = Gson()
+        val json = sharedPreferences.getString("complaints_list", null)
+        val type = object : TypeToken<ArrayList<Complaint>>() {}.type
+        val storedComplaints: ArrayList<Complaint>? = gson.fromJson(json, type)
+
+        if (storedComplaints != null) {
+            complaintsList.addAll(storedComplaints)
+        }
+
+        displayAllComplaints()
+    }
 }
+

@@ -16,5 +16,14 @@ class Settings : AppCompatActivity() {
             startActivity(Intent(this, MyWallet::class.java))
         }
         setContentView(binding.root)
+        binding.cardEdtProf.setOnClickListener {
+            startActivity(Intent(this, EditprofileActivity::class.java))
+        }
+        binding.cardView2.setOnClickListener {
+            startActivity(Intent(this, MyWallet::class.java))
+        }
+        binding.cardView5.setOnClickListener {
+            startActivity(Intent(this, add_report::class.java))
+        }
     }
 }

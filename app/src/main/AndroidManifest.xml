@@ -22,7 +22,7 @@
             android:name=".ADD_COMPLAINTS"
             android:exported="false" />
         <activity
-            android:name=".EditprofileActivity"
+            android:name=".AiChatActivity"
             android:exported="false" />
         <activity
             android:name=".Add_money"
@@ -34,10 +34,10 @@
             android:name=".Dialog_Money"
             android:exported="false" />
         <activity
-            android:name=".MyWallet"
+            android:name=".EditprofileActivity"
             android:exported="false" />
         <activity
-            android:name=".Settings"
+            android:name=".MyWallet"
             android:exported="false" />
         <activity
             android:name=".ChatscreenActivity"
@@ -59,7 +59,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".AiChatActivity"
+            android:name=".Settings"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

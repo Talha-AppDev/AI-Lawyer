@@ -12,7 +12,8 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         app:titleTextColor="@android:color/white"
-        app:title="Complaints"  />
+        app:title="Complaints"
+        android:backgroundTint="#2ECC71"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,13 +30,14 @@
 
     </ScrollView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addNewReportButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_marginBottom="50dp"
-        android:text="Add New Report" />
+        android:text="Add New Report"
+        android:background="@drawable/btn"/>
 
 
 </LinearLayout>

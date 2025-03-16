@@ -80,7 +80,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/card_edt_prof"
         android:layout_width="95dp"
         android:layout_height="80dp"
         android:elevation="@android:dimen/thumbnail_height"
@@ -93,6 +93,7 @@
         app:layout_constraintVertical_bias="0.356">
 
         <TextView
+            android:id="@+id/edit_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -123,7 +124,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cardView2"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/card_edt_prof"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.356">
 
@@ -201,7 +202,7 @@
         app:layout_constraintEnd_toStartOf="@+id/cardView6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/card_edt_prof"
         app:layout_constraintVertical_bias="0.222" >
         <TextView
             android:layout_width="wrap_content"
@@ -312,4 +313,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.959"
         app:srcCompat="@drawable/ic_google" />
+
+    <ImageView
+        android:id="@+id/home"
+        android:layout_width="61dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/home" />
 </androidx.constraintlayout.widget.ConstraintLayout>
