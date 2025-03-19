@@ -11,26 +11,20 @@
         android:id="@+id/backButton"
         android:layout_width="39dp"
         android:layout_height="31dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/baseline_arrow_back_24"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.156" />
-
-    <!-- Verified icon -->
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="80dp"
+        android:layout_marginTop="20dp"
         android:layout_height="80dp"
         android:background="@drawable/ellicipse"
         android:src="@drawable/ic"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.069" />
@@ -43,23 +37,20 @@
         android:text="Asma J."
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/verifiedIcon"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="4dp"
         android:src="@drawable/verified"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
-    <!-- Rating stars -->
     <RatingBar
         android:id="@+id/ratingBar"
         style="?android:attr/ratingBarStyleSmall"
@@ -74,7 +65,6 @@
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <!-- Reviews count -->
     <TextView
         android:id="@+id/reviewsCount"
         android:layout_width="wrap_content"
@@ -86,9 +76,6 @@
         app:layout_constraintStart_toStartOf="@+id/ratingBar"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
-    <!-- Settings title -->
-
-    <!-- First row of cards -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -102,28 +89,28 @@
         app:layout_constraintStart_toStartOf="@+id/reviewsCount"
         app:layout_constraintTop_toBottomOf="@+id/reviewsCount" />
 
-
+    <!-- First row of cards - Properly aligned -->
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="410dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="240dp"
-        android:layout_marginBottom="149dp"
-        app:layout_constraintBottom_toTopOf="@+id/diagonalBackground"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/EditProfile"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
             app:cardCornerRadius="15dp"
-            app:cardElevation="4dp"
-            tools:layout_editor_absoluteX="28dp"
-            tools:layout_editor_absoluteY="234dp">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,16 +136,13 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
             app:cardCornerRadius="15dp"
-            app:cardElevation="4dp"
-
-            tools:layout_editor_absoluteX="156dp"
-            tools:layout_editor_absoluteY="234dp">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -184,16 +168,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/Wallet"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="40dp"
-
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
             app:cardCornerRadius="15dp"
-            app:cardElevation="4dp"
-
-            tools:layout_editor_absoluteX="283dp"
-            tools:layout_editor_absoluteY="234dp">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -216,18 +196,13 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
     </LinearLayout>
 
-
-    <!-- Issues title -->
-
-    <!-- Second row of cards -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
         android:text="Facing any issues?"
         android:textColor="@android:color/black"
         android:textSize="24sp"
@@ -236,31 +211,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
+    <!-- Second row of cards - Properly aligned -->
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/diagonalBackground"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.28">
-
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/report"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="10dp"
-
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
             app:cardCornerRadius="15dp"
-            app:cardElevation="4dp"
-
-            tools:layout_editor_absoluteX="78dp"
-            tools:layout_editor_absoluteY="379dp">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -301,14 +273,13 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView6"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
             app:cardCornerRadius="15dp"
-            app:cardElevation="4dp"
-            tools:layout_editor_absoluteX="180dp"
-            tools:layout_editor_absoluteY="375dp">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -334,14 +305,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
             app:cardCornerRadius="15dp"
-            app:cardElevation="4dp"
-            tools:layout_editor_absoluteX="282dp"
-            tools:layout_editor_absoluteY="375dp">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -364,28 +333,27 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-
     </LinearLayout>
 
+    <!-- Ensuring proper spacing and constraint relationship -->
     <LinearLayout
         android:id="@+id/diagonalBackground"
         android:layout_width="match_parent"
-        android:layout_height="267dp"
-        android:layout_marginBottom="4dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
+            android:padding="10dp"
             android:src="@drawable/bgggg" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -397,22 +365,20 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diagonalBackground">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/googleIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="8dp"
             app:srcCompat="@drawable/ic_google" />
 
         <ImageView
             android:id="@+id/facebookIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:padding="4dp"
             app:srcCompat="@drawable/facebook" />
     </LinearLayout>
