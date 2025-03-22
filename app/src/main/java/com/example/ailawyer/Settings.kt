@@ -11,7 +11,6 @@ class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
         binding.Wallet.setOnClickListener {
             startActivity(Intent(this, MyWallet::class.java))
         }
