@@ -110,6 +110,7 @@
         android:clipToPadding="false"
         />
 
+
     <!-- Message Input Section -->
     <LinearLayout
         android:id="@+id/inputLayout"
