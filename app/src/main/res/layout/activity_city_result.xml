@@ -14,75 +14,72 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Title Text -->
+        <!-- App Bar for navigation -->
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="Top Rated Lawyers"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Top Rated Lawyers"
+            android:textSize="24dp"
+            android:backgroundTint="@color/green"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:titleTextColor="@android:color/white" />
 
+        <!-- MapView -->
+        <!--        <com.google.android.gms.maps.MapView-->
+        <!--            android:id="@+id/mapView"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="197dp"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/frameLayout"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
 
+        <!-- FrameLayout holding the RecyclerView -->
         <ImageView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:src="@drawable/dummy_map"
-            app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/mapView" />
 
-        <!-- MapView -->
-<!--        <com.google.android.gms.maps.MapView-->
-<!--            android:id="@+id/mapView"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="197dp"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/frameLayout"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
 
-        <!-- FrameLayout holding the RecyclerView + Home icon -->
-        <FrameLayout
-            android:id="@+id/frameLayout"
+        <!-- Bottom Navigation -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/white"
+            android:background="@android:color/white"
+            app:itemTextColor="@color/black"
+            app:itemIconTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <ImageView
-                android:id="@+id/home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="18dp"
-                android:src="@drawable/home" />
-        </FrameLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/drawer_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- SIDE MENU: NavigationView for the drawer -->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:itemIconTint="@null"
-        app:itemIconSize="24dp"
-        app:menu="@menu/drawer_menu"
-        android:background="@android:color/white" />
-
 </androidx.drawerlayout.widget.DrawerLayout>

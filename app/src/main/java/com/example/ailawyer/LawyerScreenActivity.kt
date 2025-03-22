@@ -34,6 +34,10 @@ class LawyerScreenActivity : AppCompatActivity() {
             startActivity(Intent(this, AiChatActivity::class.java))
         }
 
+        binding.btnBack.setOnClickListener {
+            startActivity(Intent(this, CityActivity::class.java))
+        }
+
         // Set up RecyclerView with a LayoutManager
         val recyclerView: RecyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)

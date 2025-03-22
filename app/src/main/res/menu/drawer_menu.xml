@@ -1,27 +1,19 @@
-<!-- res/menu/drawer_menu.xml -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/nav_setting"
-        android:icon="@drawable/set"
-        android:title="Settings" />
 
     <item
-        android:id="@+id/nav_chat"
-        android:icon="@drawable/chat"
+        android:id="@+id/navigation_Chats"
+        android:icon="@drawable/baseline_chat_24"
         android:title="Chats" />
-Profile
-    <item
-        android:id="@+id/nav_location"
-        android:icon="@drawable/loc"
-        android:title="Location"
-        />
 
     <item
-        android:id="@+id/nav_cross"
-        android:icon="@drawable/cut"
-        android:title="End"
-        />
+        android:id="@+id/navigation_location"
+        android:icon="@drawable/baseline_location_pin_24"
+        android:title="Location" />
 
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Setting" />
 
 </menu>
