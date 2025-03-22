@@ -15,55 +15,47 @@
         <activity
             android:name=".LawyerScreenActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
             android:name=".CityResultActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".loginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".add_report"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ADD_COMPLAINTS"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".EditprofileActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Add_money"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Payment_completeness_Dialog"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false"
             />
         <activity
             android:name=".Dialog_Money"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".MyWallet"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Settings"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".ChatscreenActivity"
