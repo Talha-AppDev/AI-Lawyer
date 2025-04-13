@@ -19,6 +19,9 @@
             android:name=".add_report"
             android:exported="false"/>
         <activity
+            android:name=".CityResultActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ADD_COMPLAINTS"
             android:exported="false" />
         <activity

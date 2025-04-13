@@ -34,6 +34,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/ic"
             android:background="@drawable/ellicipse"
             android:contentDescription="Profile" />
 
@@ -88,10 +89,10 @@
                 android:layout_marginStart="4dp"
                 />
             <TextView
-                android:id="@+id/btnContract"
-                android:layout_width="wrap_content"
+                android:id="@+id/btnChatbot"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:text="Contract"
+                android:text="AI ChatBot"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
@@ -105,9 +106,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="16dp"
+        android:padding="4dp"
         android:clipToPadding="false"
         />
+
 
     <!-- Message Input Section -->
     <LinearLayout
