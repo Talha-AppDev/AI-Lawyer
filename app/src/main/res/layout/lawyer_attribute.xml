@@ -68,42 +68,19 @@
             app:layout_constraintTop_toBottomOf="@+id/userName"
             android:layout_marginTop="2dp" />
 
-        <!-- Stars -->
-        <LinearLayout
-            android:id="@+id/ratingStars"
+        <!-- RatingBar (replacing LinearLayout with stars) -->
+        <RatingBar
+            android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4.8"
+            android:stepSize="0.1"
+            style="?android:attr/ratingBarStyleSmall"
             app:layout_constraintStart_toStartOf="@+id/reviews"
-            app:layout_constraintTop_toBottomOf="@+id/reviews"
-            android:layout_marginTop="4dp">
-
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/star"
-                android:contentDescription="Full star" />
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/star"
-                android:contentDescription="Full star" />
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/star"
-                android:contentDescription="Full star" />
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/star"
-                android:contentDescription="Full star" />
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/half_star"
-                android:contentDescription="Half star" />
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/reviews" />
 
         <!-- Description -->
         <TextView
@@ -113,8 +90,8 @@
             android:text="I will help you in all your legal complexities. Feel free to contact me"
             android:textSize="14sp"
             android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="@+id/ratingStars"
-            app:layout_constraintTop_toBottomOf="@+id/ratingStars"
+            app:layout_constraintStart_toStartOf="@+id/ratingBar"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toStartOf="@+id/smileIcon"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp" />

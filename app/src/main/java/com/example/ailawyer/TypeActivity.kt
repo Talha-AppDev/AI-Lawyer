@@ -16,12 +16,12 @@ class TypeActivity : AppCompatActivity() {
         binding = ActivityTypeBinding.inflate(layoutInflater)
         setContentView(binding.root) // Move this before setting click listeners
 
-        binding.lawyer.setOnClickListener {
+        binding.lawyerCard.setOnClickListener {
             val intent = Intent(Intent(this@TypeActivity, loginActivity::class.java))
             intent.putExtra("userType", "Lawyer")
             startActivity(intent)
         }
-        binding.client.setOnClickListener {
+        binding.clientCard.setOnClickListener {
             val intent = Intent(Intent(this@TypeActivity, loginActivity::class.java))
             intent.putExtra("userType", "Client")
             startActivity(intent)

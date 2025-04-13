@@ -155,17 +155,34 @@ class RegisterActivity : AppCompatActivity() {
                                     "displayName" to userName
                                 )
 
-                                // Write the extra user info to the respective collection
+                                // Write extra user info to Firestore
                                 val firestore = FirebaseFirestore.getInstance()
                                 firestore.collection(collectionName)
                                     .document(user.uid)
                                     .set(userData)
                                     .addOnSuccessListener {
+                                        // ✅ Save to SharedPreferences
+                                        val sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+                                        with(sharedPref.edit()) {
+                                            putString("userType", userType)
+                                            putString("userEmail", userEmail)
+                                            putString("userPassword", userPass)
+                                            putString("userName", userName)
+                                            apply()
+                                        }
+
+                                        // ✅ Log the saved values
+                                        Log.d(
+                                            "SharedPrefDebug",
+                                            "✅ SignUp -> Saved to SharedPreferences → Name: $userName, Email: $userEmail, Password: $userPass, Type: $userType"
+                                        )
+
                                         Toast.makeText(
                                             this,
-                                            "Sign up successful and profile updated.",
+                                            "Sign up as $userType",
                                             Toast.LENGTH_SHORT
                                         ).show()
+
                                         // Hide the progress bar and re-enable the sign-up button
                                         binding.progressBar.visibility = View.GONE
                                         setSignUpButtonEnabled(true)
@@ -179,7 +196,6 @@ class RegisterActivity : AppCompatActivity() {
                                         ).show()
                                         binding.progressBar.visibility = View.GONE
                                         setSignUpButtonEnabled(true)
-                                        // Depending on your logic, you may still want to treat the sign-up as successful
                                         onSignUpResult(true)
                                     }
                             } else {
@@ -207,6 +223,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
     }
+
 
 
     private fun isEmailValid(email: String): Boolean {
