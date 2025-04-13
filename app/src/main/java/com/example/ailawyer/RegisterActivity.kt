@@ -25,6 +25,8 @@ import com.google.android.gms.common.AccountPicker
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
+import java.util.Locale
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -34,7 +36,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var user_pass: EditText
     private lateinit var user_confirm_pass: EditText
     private lateinit var auth: FirebaseAuth
-
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var signInLauncher: ActivityResultLauncher<Intent>
 
@@ -47,6 +48,9 @@ class RegisterActivity : AppCompatActivity() {
         user_email = binding.etEmail
         user_pass = binding.etPassword
         user_confirm_pass = binding.etConfirmPassword
+
+        val userType = intent.getStringExtra("userType")
+        Toast.makeText(this@RegisterActivity, "User Type: $userType", Toast.LENGTH_SHORT).show()
 
         if (binding.progressBar.visibility == View.VISIBLE)
             binding.btnSignUp.isEnabled = false
@@ -69,7 +73,10 @@ class RegisterActivity : AppCompatActivity() {
                     signUpUser(
                         user_name.text.toString(),
                         user_email.text.toString(),
-                        user_pass.text.toString()) { success ->
+                        user_pass.text.toString(),
+                        userType.toString()
+                    )
+                    { success ->
                         if (success) {
                             startActivity(Intent(this, CityActivity::class.java))
                         } else {
@@ -108,10 +115,12 @@ class RegisterActivity : AppCompatActivity() {
     private fun setSignUpButtonEnabled(enabled: Boolean) {
         binding.btnSignUp.isEnabled = enabled
     }
+
     private fun signUpUser(
         userName: String,
         userEmail: String,
         userPass: String,
+        userType: String,
         onSignUpResult: (Boolean) -> Unit
     ) {
         // Show the progress bar and disable the sign-up button
@@ -131,27 +140,62 @@ class RegisterActivity : AppCompatActivity() {
 
                     user?.updateProfile(profileUpdates)
                         ?.addOnCompleteListener { profileTask ->
-                            // Hide the progress bar and re-enable the sign-up button
-                            binding.progressBar.visibility = View.GONE
-                            setSignUpButtonEnabled(true)
                             if (profileTask.isSuccessful) {
-                                Toast.makeText(
-                                    this,
-                                    "Sign up successful and profile updated.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                // Determine the collection name based on the userType
+                                val collectionName = when (userType.lowercase(Locale.getDefault())) {
+                                    "lawyer" -> "lawyers"
+                                    "client" -> "clients"
+                                    else -> "users" // Fallback collection
+                                }
+
+                                // Prepare user data to store
+                                val userData = hashMapOf(
+                                    "userType" to userType,
+                                    "email" to userEmail,
+                                    "displayName" to userName
+                                )
+
+                                // Write the extra user info to the respective collection
+                                val firestore = FirebaseFirestore.getInstance()
+                                firestore.collection(collectionName)
+                                    .document(user.uid)
+                                    .set(userData)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(
+                                            this,
+                                            "Sign up successful and profile updated.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        // Hide the progress bar and re-enable the sign-up button
+                                        binding.progressBar.visibility = View.GONE
+                                        setSignUpButtonEnabled(true)
+                                        onSignUpResult(true)
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Toast.makeText(
+                                            this,
+                                            "Profile updated but failed to save extra data: ${e.message}",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        binding.progressBar.visibility = View.GONE
+                                        setSignUpButtonEnabled(true)
+                                        // Depending on your logic, you may still want to treat the sign-up as successful
+                                        onSignUpResult(true)
+                                    }
                             } else {
+                                // Handle profile update failure
+                                binding.progressBar.visibility = View.GONE
+                                setSignUpButtonEnabled(true)
                                 Toast.makeText(
                                     this,
                                     "Sign up succeeded but profile update failed: ${profileTask.exception?.message}",
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                onSignUpResult(false)
                             }
-                            // Call back with true because sign-up was successful
-                            onSignUpResult(true)
                         }
                 } else {
-                    // Hide the progress bar, re-enable the sign-up button, and show an error message.
+                    // Handle sign up failure
                     binding.progressBar.visibility = View.GONE
                     setSignUpButtonEnabled(true)
                     Toast.makeText(
@@ -159,11 +203,11 @@ class RegisterActivity : AppCompatActivity() {
                         "Sign up failed: ${task.exception?.message}",
                         Toast.LENGTH_SHORT
                     ).show()
-                    // Call back with false because sign-up failed
                     onSignUpResult(false)
                 }
             }
     }
+
 
     private fun isEmailValid(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
