@@ -125,6 +125,7 @@ class CityResultActivity : AppCompatActivity() {
         inner class LawyerViewHolder(val binding: LawyerAttributeBinding) :
             RecyclerView.ViewHolder(binding.root)
 
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LawyerViewHolder {
             val itemBinding = LawyerAttributeBinding.inflate(
                 LayoutInflater.from(parent.context),
