@@ -1,9 +1,11 @@
 package com.example.ailawyer
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -22,7 +24,6 @@ class CityResultActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var bottomNavigationView: BottomNavigationView
     private val db = FirebaseFirestore.getInstance()
-
     private lateinit var lawyerAdapter: LawyerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +50,49 @@ class CityResultActivity : AppCompatActivity() {
             true
         }
 
-        fetchLawyerData()
+        val sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+
+        // Get values (use default if not found)
+        val userType = sharedPref.getString("userType", null)
+        val userEmail = sharedPref.getString("userEmail", null)
+        val userPassword = sharedPref.getString("userPassword", null)
+        val userName = sharedPref.getString("userName", null)
+
+        // Log them for debugging
+        Log.d("SharedPrefDebug", "Fetched from SharedPreferences → Name: $userName, Email: $userEmail, Password: $userPassword, Type: $userType")
+
+
+        if (userType != null) {
+            if (userType.lowercase() == "client".lowercase()) {
+                binding.progressBar.visibility = View.VISIBLE
+                fetchLawyerData()
+            }
+            else if (userType.lowercase() == "lawyer".lowercase())
+            {
+                binding.toolbar.setText("Clients")
+                fetchClientData()
+            }
+        }
     }
+
+    private fun fetchClientData() {
+        if (true)
+        {
+            showNoClientsAlert(this@CityResultActivity)
+        }
+    }
+
+    private fun showNoClientsAlert(context: Context) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(context)
+        builder.setTitle("No clients at the moment.")
+        builder.setMessage("Clients will be shown to you when they will contact you.")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.setCancelable(false)
+        builder.show()
+    }
+
 
     private fun fetchLawyerData() {
         db.collection("lawyers")
@@ -60,10 +102,12 @@ class CityResultActivity : AppCompatActivity() {
                     val name = doc.getString("displayName") ?: return@mapNotNull null
                     Lawyer(name)
                 }
+                binding.progressBar.visibility = View.GONE
                 lawyerAdapter.updateData(lawyerList)
             }
             .addOnFailureListener { e ->
                 Log.e("CityResultActivity", "Failed to fetch lawyers", e)
+                binding.progressBar.visibility = View.GONE
             }
     }
 
@@ -110,6 +154,11 @@ class CityResultActivity : AppCompatActivity() {
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(this@CityResultActivity, IntroActivity::class.java)
+                intent.putExtra("Name", lawyer.displayName)
+                intent.putExtra("Rating", lawyer.rating)
+                intent.putExtra("ReviewCount", lawyer.reviewCount)
+                intent.putExtra("Description", lawyer.description)
+                intent.putExtra("ImageKey", lawyer.imageKey)
                 startActivity(intent)
             }
         }

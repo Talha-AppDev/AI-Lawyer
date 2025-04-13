@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.androidx.media3.common.ktx)
     implementation(libs.cronet.embedded)
     implementation(libs.firebase.crashlytics.buildtools)
+    implementation("com.google.android.libraries.places:places:4.2.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

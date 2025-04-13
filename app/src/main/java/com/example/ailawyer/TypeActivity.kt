@@ -21,6 +21,7 @@ class TypeActivity : AppCompatActivity() {
             intent.putExtra("userType", "Lawyer")
             startActivity(intent)
         }
+
         binding.clientCard.setOnClickListener {
             val intent = Intent(Intent(this@TypeActivity, loginActivity::class.java))
             intent.putExtra("userType", "Client")

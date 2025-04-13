@@ -48,7 +48,6 @@ class SelectcityFragment : Fragment() {
                 id: Long
             ) {
                 val selectedCity = cities[position]
-                Toast.makeText(requireContext(), "Selected: $selectedCity", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
