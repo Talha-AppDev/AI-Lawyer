@@ -59,6 +59,7 @@ class IntroActivity : AppCompatActivity() {
             Review("Mehad Javed", 4.8f, "Outstanding professionalism and support.",'f')
         )
 
+
         val reviewAdapter = ReviewAdapter(reviews)
         binding.reviewsRecyclerView.adapter = reviewAdapter
         binding.reviewsRecyclerView.layoutManager = LinearLayoutManager(this)
