@@ -1,4 +1,4 @@
-package com.example.ailawyer
+package com.example.ailawyer.dataclasses
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,44 +14,8 @@ import com.google.gson.reflect.TypeToken
 
 import android.os.Parcel
 import android.os.Parcelable
-
-// Data class for Complaint
-data class Complaint(
-    var title: String,
-    var details: String,
-    var state: String,
-    var progress: String
-) : Parcelable {
-
-    constructor(parcel: Parcel) : this(
-        parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readString() ?: ""
-    )
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(title)
-        parcel.writeString(details)
-        parcel.writeString(state)
-        parcel.writeString(progress)
-    }
-
-    override fun describeContents(): Int = 0
-
-    companion object CREATOR : Parcelable.Creator<Complaint> {
-        override fun createFromParcel(parcel: Parcel): Complaint {
-            return Complaint(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Complaint?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
-
-
-
+import com.example.ailawyer.AddComplaintsActivity
+import com.example.ailawyer.R
 
 
 class add_report : AppCompatActivity() {
@@ -72,7 +36,7 @@ class add_report : AppCompatActivity() {
         loadComplaints()
 
         binding.addNewReportButton.setOnClickListener {
-            startActivity(Intent(this, ADD_COMPLAINTS::class.java))
+            startActivity(Intent(this, AddComplaintsActivity::class.java))
         }
 
         // Check if a new complaint was added

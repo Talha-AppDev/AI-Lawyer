@@ -1,4 +1,4 @@
-package com.example.ailawyer.typeFrag
+package com.example.ailawyer.typefragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.ailawyer.CityActivity
 import com.example.ailawyer.CityResultActivity
 import com.example.ailawyer.databinding.FragmentSelectcityBinding
 

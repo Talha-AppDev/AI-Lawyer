@@ -6,10 +6,8 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import com.example.ailawyer.databinding.ActivityDialogMoneyBinding
 
-class Dialog_Money() : AppCompatActivity() {
+class DialogMoneyActivity() : AppCompatActivity() {
     private lateinit var binding: ActivityDialogMoneyBinding
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +17,7 @@ class Dialog_Money() : AppCompatActivity() {
 
         setContentView(binding.root)
         binding.ivCancel.setOnClickListener{
-            startActivity(Intent(this,MyWallet::class.java))
+            startActivity(Intent(this,MyWalletActivity::class.java))
         }
 
         binding.btnConfirm.setOnClickListener{

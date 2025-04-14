@@ -2,11 +2,9 @@ package com.example.ailawyer
 
 import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
-import android.text.style.AbsoluteSizeSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.View
@@ -14,10 +12,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ailawyer.QueryData.QueryRequest
-import com.example.ailawyer.QueryData.QueryResponse
-import com.example.ailawyer.Network.RetrofitClient
+import com.example.ailawyer.adapters.ChatAdapter
+import com.example.ailawyer.dataclasses.QueryRequest
+import com.example.ailawyer.dataclasses.QueryResponse
+import com.example.ailawyer.network.RetrofitClient
 import com.example.ailawyer.databinding.ActivityChatBinding
+import com.example.ailawyer.dataclasses.Message
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

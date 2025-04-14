@@ -1,8 +1,9 @@
-package com.example.ailawyer
+package com.example.ailawyer.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ailawyer.dataclasses.Message
 import com.example.ailawyer.databinding.ItemMessageSentBinding
 import com.example.ailawyer.databinding.ItemMessageReceivedBinding
 

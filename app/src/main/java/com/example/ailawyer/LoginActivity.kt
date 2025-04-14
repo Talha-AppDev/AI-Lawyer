@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Locale
 
-class loginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class loginActivity : AppCompatActivity() {
         val userType = intent.getStringExtra("userType")
 
         binding.register.setOnClickListener {
-            val intent = Intent(this@loginActivity, RegisterActivity::class.java)
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             intent.putExtra("userType", userType ?: "")
             startActivity(intent)
         }

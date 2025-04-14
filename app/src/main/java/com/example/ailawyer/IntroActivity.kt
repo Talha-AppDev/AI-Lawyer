@@ -8,6 +8,8 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ailawyer.adapters.Review
+import com.example.ailawyer.adapters.ReviewAdapter
 import com.example.ailawyer.databinding.ActivityIntroBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -31,29 +33,23 @@ class IntroActivity : AppCompatActivity() {
             insets
         }
 
-        val lawyerName = intent.getStringExtra("Name") ?: "Unnamed Lawyer"
+        val lawyerId = intent.getStringExtra("LawyerId") ?: ""
+        val lawyerName = intent.getStringExtra("Name") ?: "Lawyer"
         val rating = intent.getFloatExtra("Rating", 0f)
         val reviewCount = intent.getIntExtra("ReviewCount", 0)
         val description = intent.getStringExtra("Description") ?: getRandomLawyerDescription()
         val imageKey = intent.getStringExtra("ImageKey") ?: "a" // fallback key
 
-        // Set lawyer name
         binding.userName.text = lawyerName
-
-        // Set rating and review text
         binding.ratingBar.rating = rating
         binding.ratingText.text = "$rating out of $reviewCount reviews"
-
-        // Set lawyer description
         binding.descriptionText.text = getRandomLawyerDescription()
 
-        // Set profile image safely using imageKey from drawable
         val context = binding.profileImage.context
         val resId = context.resources.getIdentifier(imageKey, "drawable", context.packageName)
         if (resId != 0) {
             binding.profileImage.setImageResource(resId)
         }
-
 
         val reviews = listOf(
             Review("Areeb Khan", 4.5f, "Very polite and cooperative. Helped with legal issues efficiently.",'a'),
@@ -69,7 +65,11 @@ class IntroActivity : AppCompatActivity() {
 
 
         binding.sendMessageButton.setOnClickListener {
-            startActivity(Intent(this@IntroActivity, ChatscreenActivity::class.java))
+            val intent = Intent(this@IntroActivity, ChatscreenActivity::class.java)
+            intent.putExtra("LawyerName", lawyerName)
+            intent.putExtra("LawyerId", lawyerId)
+            intent.putExtra("ImageKey", imageKey)
+            startActivity(intent)
         }
 
 //        bottomNavigationView = binding.bottomNavigationView

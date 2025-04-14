@@ -2,8 +2,6 @@ package com.example.ailawyer
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -13,9 +11,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ailawyer.databinding.ActivityAddMoneyBinding
-import com.example.ailawyer.databinding.ActivityDialogMoneyBinding
 
-class Add_money : AppCompatActivity() {
+class AddMoneyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddMoneyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +60,7 @@ class Add_money : AppCompatActivity() {
                     dialog2.dismiss()
 
                     // Go back to MyWallet and pass the amount
-                    val intent = Intent(this, MyWallet::class.java)
+                    val intent = Intent(this, MyWalletActivity::class.java)
                     intent.putExtra("Amount", inputAmount)
                     startActivity(intent)
 

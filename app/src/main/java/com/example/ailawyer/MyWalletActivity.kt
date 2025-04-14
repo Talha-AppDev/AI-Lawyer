@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.ailawyer.databinding.ActivityMyWalletBinding
 
-class MyWallet : AppCompatActivity() {
+class MyWalletActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyWalletBinding
     private lateinit var sharedPreferences: SharedPreferences
     var totalBalance: Float = 0.0f
@@ -34,7 +34,7 @@ class MyWallet : AppCompatActivity() {
         binding.balance.text = "$ $totalBalance"
 
         binding.addMoneyBtn.setOnClickListener {
-            startActivity(Intent(this, Add_money::class.java))
+            startActivity(Intent(this, AddMoneyActivity::class.java))
         }
     }
 }

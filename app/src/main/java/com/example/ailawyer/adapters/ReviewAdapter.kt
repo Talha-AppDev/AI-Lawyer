@@ -1,4 +1,4 @@
-package com.example.ailawyer
+package com.example.ailawyer.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ailawyer.R
 
 data class Review(val reviewerName: String, val rating: Float, val comment: String, val imgKey: Char)
 

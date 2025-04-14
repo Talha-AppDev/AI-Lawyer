@@ -2,11 +2,14 @@ package com.example.ailawyer
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ailawyer.adapters.ChatAdapter
 import com.example.ailawyer.databinding.ActivityChatscreenBinding
+import com.example.ailawyer.dataclasses.Message
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -21,6 +24,9 @@ class ChatscreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val lawyerName = intent.getStringExtra("LawyerName") ?: "Lawyer"
+        binding.tvName.text = lawyerName
 
         // Initialize chat adapter and RecyclerView
         chatAdapter = ChatAdapter(messages)
@@ -37,30 +43,6 @@ class ChatscreenActivity : AppCompatActivity() {
         // Set click listener for contract button to show a dialog
         binding.btnContract.setOnClickListener {
             showContractNotAvailableDialog()
-        }
-
-        // Set click listener for sending a message
-        binding.imgEndIcon.setOnClickListener {
-            val messageText = binding.etMessage.text.toString().trim()
-            if (messageText.isNotEmpty()) {
-                val time = getTimeParts()
-                // Add user's message to the chat list
-                val userMessage = Message(messageText, time, isUser = true)
-                messages.add(userMessage)
-                chatAdapter.notifyItemInserted(messages.size - 1)
-                binding.recyclerViewChat.smoothScrollToPosition(messages.size - 1)
-
-                // Optionally clear the text field after sending
-                binding.etMessage.text.clear()
-
-                // Add system response to the chat list
-                val responseMessage = Message("Asma J. is not available.", time, isUser = false)
-                messages.add(responseMessage)
-                chatAdapter.notifyItemInserted(messages.size - 1)
-                binding.recyclerViewChat.smoothScrollToPosition(messages.size - 1)
-            } else {
-                Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 

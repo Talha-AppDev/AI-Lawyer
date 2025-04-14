@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ailawyer.databinding.ActivityCityBinding
 import com.google.android.material.tabs.TabLayout
 import androidx.fragment.app.FragmentTransaction
-import com.example.ailawyer.typeFrag.SelectcityFragment
+import com.example.ailawyer.typefragments.SelectcityFragment
 
 class CityActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCityBinding

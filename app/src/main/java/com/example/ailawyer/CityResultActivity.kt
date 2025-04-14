@@ -40,7 +40,7 @@ class CityResultActivity : AppCompatActivity() {
 
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_setting -> startActivity(Intent(this, Settings::class.java))
+                R.id.navigation_setting -> startActivity(Intent(this, SettingsActivity::class.java))
                 R.id.navigation_Chats -> startActivity(Intent(this, LawyerScreenActivity::class.java))
                 R.id.navigation_location -> startActivity(Intent(this, CityActivity::class.java))
             }
@@ -82,25 +82,16 @@ class CityResultActivity : AppCompatActivity() {
         }
     }
 
-    private fun showNoClientsAlert(context: Context) {
-        val builder = androidx.appcompat.app.AlertDialog.Builder(context)
-        builder.setTitle("No clients at the moment.")
-        builder.setMessage("Clients will be shown to you when they will contact you.")
-        builder.setPositiveButton("OK") { dialog, _ ->
-            dialog.dismiss()
-        }
-        builder.setCancelable(false)
-        builder.show()
-    }
-
-
     private fun fetchLawyerData() {
         db.collection("lawyers")
             .get()
             .addOnSuccessListener { snapshot ->
                 val lawyerList = snapshot.documents.mapNotNull { doc ->
                     val name = doc.getString("displayName") ?: return@mapNotNull null
-                    Lawyer(name)
+                    Lawyer(
+                        id = doc.id,
+                        displayName = name
+                    )
                 }
                 binding.progressBar.visibility = View.GONE
                 lawyerAdapter.updateData(lawyerList)
@@ -111,7 +102,9 @@ class CityResultActivity : AppCompatActivity() {
             }
     }
 
+
     data class Lawyer(
+        val id: String, // Unique Firestore ID
         val displayName: String,
         val rating: Float = (Random.nextDouble(3.0, 5.0) * 10).toInt() / 10f,
         val reviewCount: Int = Random.nextInt(10, 100),
@@ -119,12 +112,9 @@ class CityResultActivity : AppCompatActivity() {
         val imageKey: String = getRandomImageKey()
     )
 
-    inner class LawyerAdapter(private val lawyers: MutableList<Lawyer>) :
-        RecyclerView.Adapter<LawyerAdapter.LawyerViewHolder>() {
+    inner class LawyerAdapter(private val lawyers: MutableList<Lawyer>) : RecyclerView.Adapter<LawyerAdapter.LawyerViewHolder>() {
 
-        inner class LawyerViewHolder(val binding: LawyerAttributeBinding) :
-            RecyclerView.ViewHolder(binding.root)
-
+        inner class LawyerViewHolder(val binding: LawyerAttributeBinding) : RecyclerView.ViewHolder(binding.root)
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LawyerViewHolder {
             val itemBinding = LawyerAttributeBinding.inflate(
@@ -155,6 +145,7 @@ class CityResultActivity : AppCompatActivity() {
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(this@CityResultActivity, IntroActivity::class.java)
+                intent.putExtra("LawyerId", lawyer.id)
                 intent.putExtra("Name", lawyer.displayName)
                 intent.putExtra("Rating", lawyer.rating)
                 intent.putExtra("ReviewCount", lawyer.reviewCount)
@@ -171,6 +162,17 @@ class CityResultActivity : AppCompatActivity() {
             lawyers.addAll(newLawyers)
             notifyDataSetChanged()
         }
+    }
+
+    private fun showNoClientsAlert(context: Context) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(context)
+        builder.setTitle("No clients at the moment.")
+        builder.setMessage("Clients will be shown to you when they will contact you.")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.setCancelable(false)
+        builder.show()
     }
 
     override fun onBackPressed() {

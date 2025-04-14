@@ -1,4 +1,4 @@
-package com.example.ailawyer.QueryData
+package com.example.ailawyer.dataclasses
 
 data class QueryRequest(
     val query: String

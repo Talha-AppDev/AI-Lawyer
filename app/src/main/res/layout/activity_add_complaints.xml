@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ADD_COMPLAINTS">
+    tools:context=".AddComplaintsActivity">
 
     <TextView
         android:layout_width="wrap_content"

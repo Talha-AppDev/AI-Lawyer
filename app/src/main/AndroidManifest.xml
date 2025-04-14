@@ -22,15 +22,15 @@
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".loginActivity"
+            android:name=".LoginActivity"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".add_report"
+            android:name=".dataclasses.add_report"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".ADD_COMPLAINTS"
+            android:name=".AddComplaintsActivity"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
@@ -38,24 +38,24 @@
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".Add_money"
+            android:name=".AddMoneyActivity"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".Payment_completeness_Dialog"
+            android:name=".PaymentActivity"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false"
             />
         <activity
-            android:name=".Dialog_Money"
+            android:name=".DialogMoneyActivity"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".MyWallet"
+            android:name=".MyWalletActivity"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".Settings"
+            android:name=".SettingsActivity"
             android:theme="@style/Theme.Material3.Light.NoActionBar"
             android:exported="false" />
         <activity

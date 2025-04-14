@@ -2,8 +2,6 @@ package com.example.ailawyer
 
 import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.provider.Settings
 import androidx.appcompat.app.AlertDialog
@@ -11,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.ailawyer.databinding.ActivityMainBinding
-import com.example.ailawyer.fragMA.ViewPagerAdapter
+import com.example.ailawyer.adapters.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers

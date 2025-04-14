@@ -1,7 +1,7 @@
-package com.example.ailawyer.Network
+package com.example.ailawyer.network
 
-import com.example.ailawyer.QueryData.QueryRequest
-import com.example.ailawyer.QueryData.QueryResponse
+import com.example.ailawyer.dataclasses.QueryRequest
+import com.example.ailawyer.dataclasses.QueryResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

@@ -7,9 +7,10 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ailawyer.databinding.ActivityAddComplaintsBinding
-import com.example.ailawyer.databinding.ActivityAddReportBinding
+import com.example.ailawyer.dataclasses.Complaint
+import com.example.ailawyer.dataclasses.add_report
 
-class ADD_COMPLAINTS : AppCompatActivity() {
+class AddComplaintsActivity : AppCompatActivity() {
     private lateinit var binding :ActivityAddComplaintsBinding
     // val complaint =Complaint(" ","","","")
 

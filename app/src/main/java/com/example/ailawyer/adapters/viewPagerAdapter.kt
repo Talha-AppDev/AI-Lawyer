@@ -1,4 +1,4 @@
-package com.example.ailawyer.fragMA
+package com.example.ailawyer.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

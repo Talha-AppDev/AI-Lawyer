@@ -3,16 +3,16 @@ package com.example.ailawyer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import com.example.ailawyer.databinding.ActivitySettingsBinding
+import com.example.ailawyer.dataclasses.add_report
 
-class Settings : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         binding.Wallet.setOnClickListener {
-            startActivity(Intent(this, MyWallet::class.java))
+            startActivity(Intent(this, MyWalletActivity::class.java))
         }
 
         binding.EditProfile.setOnClickListener {
