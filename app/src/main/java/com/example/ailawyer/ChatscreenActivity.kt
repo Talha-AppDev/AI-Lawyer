@@ -69,6 +69,7 @@ class ChatscreenActivity : AppCompatActivity() {
         conversationId = listOf(clientId, lawyerId).sorted().joinToString("_")
         Log.d(TAG, "ConversationId: $conversationId")
 
+
         // Setup RecyclerView
         chatAdapter = ChatAdapter(messages)
         binding.recyclerViewChat.apply {
