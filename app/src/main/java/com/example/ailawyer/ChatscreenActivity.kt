@@ -65,6 +65,7 @@ class ChatscreenActivity : AppCompatActivity() {
         binding.tvName.text = partnerName
         loadProfileImage(partnerImageKey)
 
+
         // Build a consistent conversation ID so both sides use same thread
         conversationId = listOf(clientId, lawyerId).sorted().joinToString("_")
         Log.d(TAG, "ConversationId: $conversationId")
