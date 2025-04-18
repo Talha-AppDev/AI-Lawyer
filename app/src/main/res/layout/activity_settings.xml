@@ -48,7 +48,7 @@
         android:layout_marginStart="4dp"
         android:src="@drawable/verified"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <RatingBar
