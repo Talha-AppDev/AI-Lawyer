@@ -35,7 +35,7 @@ class AiChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.btnContract.visibility=View.GONE
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         binding.chatRecyclerView.layoutManager = LinearLayoutManager(this)

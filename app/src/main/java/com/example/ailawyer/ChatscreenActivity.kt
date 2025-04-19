@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,6 +43,7 @@ class ChatscreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.btnContract.visibility=View.GONE
 
         setupUserInfo()
         setupChat()

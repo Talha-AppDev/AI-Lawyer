@@ -166,7 +166,7 @@ class CityResultActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_setting -> startActivity(Intent(this, SettingsActivity::class.java))
-                R.id.navigation_Chats -> startActivity(Intent(this, LawyerScreenActivity::class.java))
+                R.id.navigation_Chats -> startActivity(Intent(this, AiChatActivity::class.java))
                 R.id.navigation_location -> startActivity(Intent(this, CityActivity::class.java))
             }
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START)

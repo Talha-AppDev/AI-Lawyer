@@ -29,6 +29,7 @@ class LawyerScreenActivity : AppCompatActivity() {
         binding = ActivityLawyerScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         // Button to open AiChatActivity (if needed)
         binding.btnAiAssistant.setOnClickListener {
             startActivity(Intent(this, AiChatActivity::class.java))
