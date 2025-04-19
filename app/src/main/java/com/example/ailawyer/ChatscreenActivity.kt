@@ -1,7 +1,7 @@
 package com.example.ailawyer
 
 import android.app.AlertDialog
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -13,10 +13,10 @@ import com.example.ailawyer.dataclasses.Message
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 class ChatscreenActivity : AppCompatActivity() {
 
@@ -25,154 +25,203 @@ class ChatscreenActivity : AppCompatActivity() {
     private val messages = mutableListOf<Message>()
 
     private val TAG = "ChatscreenActivity"
+    private val DATE_FORMAT = SimpleDateFormat("hh:mm a", Locale.getDefault())
 
     private lateinit var clientId: String
+    private lateinit var clientName: String
     private lateinit var lawyerId: String
+    private lateinit var lawyerName: String
     private lateinit var conversationId: String
     private lateinit var currentUserId: String
+    private lateinit var userType: String
+    private lateinit var imgId: String
+    private var messageListenerRegistration: ListenerRegistration? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Grab IDs and names/images for both roles from intent
-        clientId = intent.getStringExtra("ClientId") ?: ""
-        lawyerId = intent.getStringExtra("LawyerId") ?: ""
-        val clientName = intent.getStringExtra("ClientName") ?: "Client"
-        val lawyerName = intent.getStringExtra("LawyerName") ?: "Lawyer"
-        val clientImageKey = intent.getStringExtra("ClientImageKey") ?: ""
-        val lawyerImageKey = intent.getStringExtra("LawyerImageKey") ?: ""
+        setupUserInfo()
+        setupChat()
+        setupUI()
+    }
 
-        // Ensure IDs are provided
-        if (clientId.isEmpty() || lawyerId.isEmpty()) {
-            Log.e(TAG, "Missing clientId or lawyerId in intent extras. clientId=$clientId, lawyerId=$lawyerId")
-            Toast.makeText(this, "Chat participants not defined.", Toast.LENGTH_LONG).show()
+    override fun onStart() {
+        super.onStart()
+        messageListenerRegistration = listenForMessages()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        messageListenerRegistration?.remove()
+        messageListenerRegistration = null
+    }
+
+
+
+    private fun setupUserInfo() {
+        currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: run {
             finish()
             return
         }
 
-        currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-        Log.d(TAG, "Current user: $currentUserId (client:$clientId lawyer:$lawyerId)")
+        val prefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        userType = prefs.getString("userType", "") ?: ""
 
-        // Determine chat partner
-        val isCurrentClient = currentUserId == clientId
-        val partnerId = if (isCurrentClient) lawyerId else clientId
-        val partnerName = if (isCurrentClient) lawyerName else clientName
-        val partnerImageKey = if (isCurrentClient) lawyerImageKey else clientImageKey
-
-        // UI: show partner info
-        binding.tvName.text = partnerName
-        loadProfileImage(partnerImageKey)
-
-
-        // Build a consistent conversation ID so both sides use same thread
-        conversationId = listOf(clientId, lawyerId).sorted().joinToString("_")
-        Log.d(TAG, "ConversationId: $conversationId")
-
-        // Setup RecyclerView
-        chatAdapter = ChatAdapter(messages)
-        binding.recyclerViewChat.apply {
-            adapter = chatAdapter
-            layoutManager = LinearLayoutManager(this@ChatscreenActivity)
+        if (userType == "Client")
+        {
+            lawyerId = intent.getStringExtra("LawyerId").toString()
+            lawyerName = intent.getStringExtra("LawyerName").toString()
+            binding.tvName.text = lawyerName
+            imgId = intent.getStringExtra("LawyerImageKey").toString()
+            clientId = currentUserId
+        }
+        else
+        {
+            clientId = intent.getStringExtra("ClientId").toString()
+            clientName = intent.getStringExtra("ClientName").toString()
+            binding.tvName.text = clientName
+            binding.tvSubtitle.text = "Client"
+            imgId = intent.getStringExtra("ClientImageKey").toString()
+            lawyerId = currentUserId
         }
 
-        // Buttons
+        Log.w(TAG,"Type: $userType + ClientId: $clientId + LawyerId: $lawyerId")
+
+        conversationId = makeConversationId(clientId, lawyerId)
+        val resId = resources.getIdentifier(imgId, "drawable", packageName)
+        if (resId != 0) {
+            binding.profileImage.setImageResource(resId)
+        } else {
+            Log.w(TAG, "Profile image not found for key: $imgId")
+            binding.profileImage.setImageResource(R.drawable.a)
+        }
+    }
+
+    private fun setupChat() {
+        FirebaseFirestore.getInstance().collection("chats").document(conversationId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (!document.exists()) {
+                    initializeChatDocument()
+                }
+            }
+    }
+
+    private fun initializeChatDocument() {
+        val chatData = hashMapOf(
+            "createdAt" to FieldValue.serverTimestamp(),
+            "participants" to listOf(clientId, lawyerId)
+        )
+        FirebaseFirestore.getInstance().collection("chats").document(conversationId)
+            .set(chatData)
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Error initializing chat document", e)
+            }
+    }
+
+    private fun setupUI() {
+        chatAdapter = ChatAdapter(messages)
+        binding.recyclerViewChat.apply { adapter = chatAdapter
+            layoutManager = LinearLayoutManager(this@ChatscreenActivity).apply {
+                stackFromEnd = false  // Automatically scroll to bottom when new items are added
+            }
+            setHasFixedSize(true) // Optimization if item height doesn't change
+        }
+
         binding.btnBack.setOnClickListener { finish() }
         binding.btnContract.setOnClickListener { showContractNotAvailableDialog() }
-        binding.sendBTN.setOnClickListener { sendMessage(partnerId) }
-
-        // Listen for messages
-        listenForMessages()
+        binding.sendBTN.setOnClickListener { sendMessage() }
     }
 
-    private fun loadProfileImage(imageKey: String) {
-        if (imageKey.isNotEmpty()) {
-            val context = binding.profileImage.context
-            val resId = context.resources.getIdentifier(imageKey, "drawable", context.packageName)
-            if (resId != 0) binding.profileImage.setImageResource(resId)
-            else Log.w(TAG, "Profile image key not found: $imageKey")
-        }
-    }
+    private fun sendMessage() {
+        val text = binding.etMessage.text.toString().trim()
+        if (text.isEmpty()) return
 
-    private fun sendMessage(partnerId: String) {
-        val messageText = binding.etMessage.text.toString().trim()
-        if (messageText.isEmpty()) {
-            Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show()
-            return
-        }
-        val time = getTimeParts()
+        binding.etMessage.text?.clear()
 
-        val messageMap = mapOf(
-            "text" to messageText,
+        val receiverId = if (userType == "Client") lawyerId else clientId
+
+        // 👇 1. Optimistically update UI
+        val time = DATE_FORMAT.format(Date()) // Local current time
+        val tempMessage = Message(text, time, true)
+        messages.add(tempMessage)
+        chatAdapter.notifyItemInserted(messages.size - 1)
+        scrollToBottom()
+
+        // 👇 2. Disable send button temporarily
+        binding.sendBTN.isEnabled = false
+
+        // 👇 3. Send to Firestore in the background
+        val messageData = hashMapOf(
+            "text" to text,
             "senderId" to currentUserId,
-            "receiverId" to partnerId,
+            "receiverId" to receiverId,
             "timestamp" to FieldValue.serverTimestamp()
         )
-        Log.d(TAG, "Sending message: $messageMap")
 
-        val db = FirebaseFirestore.getInstance()
-        val chatRef = db.collection("chats").document(conversationId)
-        chatRef.set(mapOf("createdAt" to FieldValue.serverTimestamp()), SetOptions.merge())
+        FirebaseFirestore.getInstance().collection("chats").document(conversationId)
+            .collection("messages").add(messageData)
             .addOnSuccessListener {
-                chatRef.collection("messages").add(messageMap)
-                    .addOnSuccessListener {
-                        messages.add(Message(messageText, time, isUser = (currentUserId == clientId)))
-                        chatAdapter.notifyItemInserted(messages.size - 1)
-                        binding.recyclerViewChat.smoothScrollToPosition(messages.size - 1)
-                        binding.etMessage.text?.clear()
-                    }
-                    .addOnFailureListener { e ->
-                        Toast.makeText(this, "Send failed: ${e.message}", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "Message add failed", e)
-                    }
+                binding.sendBTN.isEnabled = true
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Chat init failed: ${e.message}", Toast.LENGTH_SHORT).show()
-                Log.e(TAG, "Chat doc init failed", e)
+                Log.e(TAG, "Error sending message", e)
+                binding.sendBTN.isEnabled = true
+                Toast.makeText(this, "Message send failed", Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun listenForMessages() {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("chats").document(conversationId)
-            .collection("messages").orderBy("timestamp")
-            .addSnapshotListener { snap, err ->
-                if (err != null) {
-                    Log.e(TAG, "Listener error", err)
+    private fun listenForMessages(): ListenerRegistration {
+        return FirebaseFirestore.getInstance().collection("chats").document(conversationId)
+            .collection("messages")
+            .orderBy("timestamp", Query.Direction.ASCENDING)
+            .addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    Log.e(TAG, "Listen error", error)
                     return@addSnapshotListener
                 }
-                if (snap != null && !snap.isEmpty) {
+
+                snapshot?.let {
                     messages.clear()
-                    for (doc in snap.documents) {
-                        val text = doc.getString("text") ?: continue
-                        val sender = doc.getString("senderId") ?: continue
-                        val date = doc.getTimestamp("timestamp")?.toDate()
-                        val tm = date?.let { formatTime(it) } ?: getTimeParts()
-                        messages.add(Message(text, tm, isUser = (sender == currentUserId)))
+                    for (document in it.documents) {
+                        val text = document.getString("text") ?: ""
+                        val senderId = document.getString("senderId") ?: ""
+                        val timestamp = document.getTimestamp("timestamp")?.toDate()
+
+                        val time = timestamp?.let { DATE_FORMAT.format(it) } ?: "Sending..."
+                        val isUser = senderId == currentUserId
+                        messages.add(Message(text, time, isUser))
                     }
                     chatAdapter.notifyDataSetChanged()
-                    binding.recyclerViewChat.scrollToPosition(messages.size - 1)
+                    scrollToBottom()
                 }
             }
     }
 
-    private fun formatTime(date: Date): String =
-        SimpleDateFormat("hh:mm a", Locale.getDefault()).format(date)
-
-    private fun getTimeParts(): String {
-        val now = Date()
-        val h = SimpleDateFormat("hh", Locale.getDefault()).format(now)
-        val m = SimpleDateFormat("mm", Locale.getDefault()).format(now)
-        val a = SimpleDateFormat("a", Locale.getDefault()).format(now)
-        return "$h:$m $a"
+    private fun scrollToBottom() {
+        if (messages.isNotEmpty()) {
+            binding.recyclerViewChat.post {
+                binding.recyclerViewChat.smoothScrollToPosition(messages.size - 1)
+            }
+        }
     }
 
     private fun showContractNotAvailableDialog() {
         AlertDialog.Builder(this)
             .setTitle("Information")
-            .setMessage("Contract is not available")
-            .setPositiveButton("OK") { dlg, _ -> dlg.dismiss() }
+            .setMessage("Contract feature is not available yet")
+            .setPositiveButton("OK", null)
             .show()
+    }
+
+    private fun makeConversationId(id1: String, id2: String): String {
+        return if (id1 < id2) {
+            "${id1}_$id2"
+        } else {
+            "${id2}_$id1"
+        }
     }
 }

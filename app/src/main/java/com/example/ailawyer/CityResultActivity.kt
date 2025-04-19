@@ -84,11 +84,11 @@ class CityResultActivity : AppCompatActivity() {
             holder.itemView.setOnClickListener {
                 // Launch ChatscreenActivity as client chatting to this lawyer
                 Intent(this@CityResultActivity, IntroActivity::class.java).apply {
-                    putExtra("ClientId", FirebaseAuth.getInstance().currentUser?.uid)
-                    putExtra("ClientName", "Me")
-                    putExtra("ClientImageKey", "")
                     putExtra("LawyerId", lawyer.id)
                     putExtra("LawyerName", lawyer.displayName)
+                    putExtra("LawyerRating", lawyer.rating)
+                    putExtra("LawyerReviewCount", lawyer.reviewCount)
+                    putExtra("LawyerDescription", lawyer.description)
                     putExtra("LawyerImageKey", lawyer.imageKey)
                     startActivity(this)
                 }
@@ -141,9 +141,6 @@ class CityResultActivity : AppCompatActivity() {
                     putExtra("ClientId", client.id)
                     putExtra("ClientName", client.name)
                     putExtra("ClientImageKey", client.imageKey)
-                    putExtra("LawyerId", FirebaseAuth.getInstance().currentUser?.uid)
-                    putExtra("LawyerName", "Me")
-                    putExtra("LawyerImageKey", "")
                     startActivity(this)
                 }
             }
@@ -240,7 +237,7 @@ class CityResultActivity : AppCompatActivity() {
                         val id = doc.id
                         val name = doc.getString("displayName") ?: doc.getString("name") ?: "Unknown"
                         val email = doc.getString("email") ?: "Unknown"
-                        clientList.add(Client(id = id, name = name, gmail = email))
+                        clientList.add(Client(id = id, name = name, gmail = email, imageKey = getRandomImageKey()))
                     }
                 }
                 binding.progressBar.visibility = View.GONE

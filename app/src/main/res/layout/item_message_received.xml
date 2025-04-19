@@ -11,9 +11,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#E6F8FB"
         android:padding="8dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="12dp"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <LinearLayout
@@ -26,7 +26,7 @@
                 android:id="@+id/messageText"
                 android:maxWidth="300dp"
                 android:paddingTop="4dp"
-                android:paddingStart="4dp"
+                android:paddingStart="8dp"
                 android:paddingEnd="4dp"
                 android:layout_margin="4dp"
                 android:text="iusahfkjash foihasui fhksf fasihf sfjfoiashf  osfh ioiashf iosahf usfh sufiushaf iuhsiuf hsoif "
