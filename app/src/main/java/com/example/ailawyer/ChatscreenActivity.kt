@@ -217,6 +217,7 @@ class ChatscreenActivity : AppCompatActivity() {
             .show()
     }
 
+    
     private fun makeConversationId(id1: String, id2: String): String {
         return if (id1 < id2) {
             "${id1}_$id2"
